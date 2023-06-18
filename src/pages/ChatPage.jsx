@@ -34,7 +34,7 @@ const ChatPage = () => {
         </Link>
       </header>
       <div className="h-full w-full pt-24 flex justify-center">
-        <div className="h-full  rounded-t-3xl pt-0 overflow-hidden pb-10 max-w-[500px]">
+        <div className="h-full  rounded-t-3xl pt-0 overflow-hidden pb-10 w-full md:max-w-[500px]">
           <Outlet />
         </div>
       </div>

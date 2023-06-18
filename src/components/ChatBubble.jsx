@@ -14,7 +14,9 @@ const ChatBubble = ({ message, isSentByCurrentUser }) => {
           </div>
         </div>
       )}
-      <div className="chat-bubble bg-gray-200">{message.content}</div>
+      <div className="chat-bubble bg-gray-200 text-sm text-gray-700">
+        {message.content}
+      </div>
       <div className="chat-footer opacity-50">
         <time className="text-xs opacity-50">{timeString}</time>
       </div>

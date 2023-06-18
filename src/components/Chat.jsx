@@ -56,7 +56,7 @@ const Chat = () => {
 
   useEffect(() => load(), []);
   return (
-    <div className="flex  flex-col  bg-white  h-screen overflow-hidden ">
+    <div className="flex  flex-col  bg-white  h-screen overflow-hidden w-full">
       <header className="bg-gray-100 py-2 px-4 flex flex-row items-center gap-2">
         <div>
           <img
