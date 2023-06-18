@@ -17,7 +17,7 @@ const MainLayout = () => {
             tabIndex={0}
             className="dropdown-content menu p-5  z-30 rounded-box w-52  flex flex-col gap-5 shadow glass">
             <Link
-              to={"profile"}
+              to={"/profile"}
               className="flex gap-5  items-center w-full ">
               <img
                 src={profilePic}

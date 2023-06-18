@@ -6,6 +6,7 @@ import {
   LandingPage,
   LoginPage,
   PeoplePage,
+  ProfilePage,
   Register,
 } from "./pages";
 import {
@@ -61,7 +62,10 @@ function App() {
           />
         </Route>
 
-        {/* <Route path="profile" element={<ProfilePage />}/> */}
+        <Route
+          path="profile"
+          element={<ProfilePage />}
+        />
       </Route>
     )
   );

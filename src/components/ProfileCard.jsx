@@ -1,6 +1,6 @@
 import { profilePic } from "../assets";
 import { GiLoveMystery } from "react-icons/gi";
-
+import PropTypes from "prop-types";
 import Preloader from "./preloader/Preloader";
 import Connect from "./preloader/Connecting";
 
@@ -47,4 +47,11 @@ const ProfileCard = ({ user, onConnect, onSkip, connecting }) => {
   );
 };
 
+ProfileCard.defaultProps = {
+  user: {
+    username: "DevonK3",
+    age: 22,
+    bio: "Fullstack with stacks, looking for a peng thing",
+  },
+};
 export default ProfileCard;
