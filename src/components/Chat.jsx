@@ -49,6 +49,8 @@ const Chat = () => {
   const load = () => {
     fieldRef.current?.scrollIntoView({
       behavior: "smooth",
+      block: "end", // Scroll to the bottom of the container
+      inline: "nearest", // Keep the last message in view
     });
   };
 
@@ -71,40 +73,39 @@ const Chat = () => {
       </header>
 
       {/* chats */}
-      <div className="px-4 h-full overflow-hidden  py-4 overflow-y-scroll pb-40 relative">
-        {sortedChat.map((message, index) => (
-          <ChatBubble
-            key={index}
-            message={message}
-            isSentByCurrentUser={message.senderId === "1"} // Assuming "1" represents the current user's ID
-          />
-        ))}
-        {sortedChat.map((message, index) => (
-          <ChatBubble
-            key={index}
-            message={message}
-            isSentByCurrentUser={message.senderId === "1"} // Assuming "1" represents the current user's ID
-          />
-        ))}
-        {sortedChat.map((message, index) => (
-          <ChatBubble
-            key={index}
-            message={message}
-            isSentByCurrentUser={message.senderId === "1"} // Assuming "1" represents the current user's ID
-          />
-        ))}
-        {sortedChat.map((message, index) => (
-          <ChatBubble
-            key={index}
-            message={message}
-            isSentByCurrentUser={message.senderId === "1"} // Assuming "1" represents the current user's ID
-          />
-        ))}
+      <div className="px-4 h-full overflow-hidden py-4 overflow-y-scroll pb-40 relative">
+        <div className="flex flex-col gap-2">
+          {sortedChat.map((message, index) => (
+            <ChatBubble
+              key={index}
+              message={message}
+              isSentByCurrentUser={message.senderId === "1"} // Assuming "1" represents the current user's ID
+            />
+          ))}
+          {sortedChat.map((message, index) => (
+            <ChatBubble
+              key={index}
+              message={message}
+              isSentByCurrentUser={message.senderId === "1"} // Assuming "1" represents the current user's ID
+            />
+          ))}
+          {sortedChat.map((message, index) => (
+            <ChatBubble
+              key={index}
+              message={message}
+              isSentByCurrentUser={message.senderId === "1"} // Assuming "1" represents the current user's ID
+            />
+          ))}
+          {sortedChat.map((message, index) => (
+            <ChatBubble
+              key={index}
+              message={message}
+              isSentByCurrentUser={message.senderId === "1"} // Assuming "1" represents the current user's ID
+            />
+          ))}
+        </div>
       </div>
       <div className="fixed bottom-0 left-0 right-0 bg-brand py-1">
-        <div
-          ref={fieldRef}
-          className=""></div>
         <form
           onSubmit={sendMessage}
           className="row-span-1 flex flex-col px-3">
