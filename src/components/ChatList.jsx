@@ -22,6 +22,7 @@ const ChatList = () => {
           data={convo}
         />
       ))}
+
       <div className="w-full flex justify-end z-50 absolute right-2 bottom-7">
         <div className="bg-cta w-12 h-12 p-3 rounded-full shadow-lg cursor-pointer btn  border-0 outline-0">
           <img

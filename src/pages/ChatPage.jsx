@@ -5,14 +5,13 @@ import { ChatList } from "../components";
 const ChatPage = () => {
   const path = useLocation();
 
-  console.log(path.pathname);
   return (
     <div className="w-full h-screen">
       <header className="bg-brand w-full h-fit flex py-4 px-2 justify-between items-center fixed top-0">
         {path.pathname === "/connects" ? (
           <Link
             className="text-white font-bold flex  items-center"
-            to={"/connects"}>
+            to={"/meet"}>
             <IoIosArrowBack className="w-8 inline" />
             <span className="font-light">Home</span>
           </Link>
@@ -34,8 +33,8 @@ const ChatPage = () => {
           />
         </Link>
       </header>
-      <div className="h-full w-full pt-24 ">
-        <div className="h-full  rounded-t-3xl pt-0 overflow-hidden pb-10">
+      <div className="h-full w-full pt-24 flex justify-center">
+        <div className="h-full  rounded-t-3xl pt-0 overflow-hidden pb-10 max-w-[500px]">
           <Outlet />
         </div>
       </div>

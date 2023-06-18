@@ -28,7 +28,7 @@ const MainLayout = () => {
             </Link>
             <Link
               to={"logout"}
-              className="btn btn-outline border-cta text-white">
+              className="btn btn-outline border-cta text-white md:bg-cta">
               logout
             </Link>
           </ul>

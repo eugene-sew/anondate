@@ -60,6 +60,8 @@ function App() {
             element={<Chat />}
           />
         </Route>
+
+        {/* <Route path="profile" element={<ProfilePage />}/> */}
       </Route>
     )
   );
