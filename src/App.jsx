@@ -17,7 +17,7 @@ import {
 import MainLayout from "./layout/MainLayout";
 
 function App() {
-  // routes
+  // routes --done
   // landing --done
   // login --done
   // signup --done
