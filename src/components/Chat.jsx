@@ -5,9 +5,10 @@ import { useEffect, useRef, useState } from "react";
 
 const Chat = () => {
   const { id } = useParams();
-  const current = conversation.filter((c) => c.id === id);
   const [formValue, setFormValue] = useState("");
   const fieldRef = useRef();
+  const current = conversation.filter((c) => c.id === id);
+
   const dateTimeString = current[0].createdAt;
   const date = new Date(dateTimeString);
   const day = date.getDate();
@@ -44,24 +45,16 @@ const Chat = () => {
     })
     .reverse();
 
-  const sendMessage = async (e) => {
-    e.preventDefault();
-
-    setFormValue("");
-    fieldRef.current.scrollIntoView({
+  const sendMessage = () => {};
+  const load = () => {
+    fieldRef.current?.scrollIntoView({
       behavior: "smooth",
     });
   };
 
-  function load() {
-    fieldRef.current?.scrollIntoView({
-      behavior: "smooth",
-    });
-  }
+  useEffect(() => load(), []);
   return (
-    <div
-      className="flex  flex-col  bg-white  h-screen overflow-hidden "
-      onLoad={load}>
+    <div className="flex  flex-col  bg-white  h-screen overflow-hidden ">
       <header className="bg-gray-100 py-2 px-4 flex flex-row items-center gap-2">
         <div>
           <img
@@ -78,7 +71,7 @@ const Chat = () => {
       </header>
 
       {/* chats */}
-      <div className="px-4 h-full overflow-hidden  py-4 overflow-y-scroll pb-10">
+      <div className="px-4 h-full overflow-hidden  py-4 overflow-y-scroll pb-40 relative">
         {sortedChat.map((message, index) => (
           <ChatBubble
             key={index}
@@ -107,14 +100,15 @@ const Chat = () => {
             isSentByCurrentUser={message.senderId === "1"} // Assuming "1" represents the current user's ID
           />
         ))}
-        <div ref={fieldRef}></div>
       </div>
-
-      <div className="fixed bottom-0 left-0 right-0 bg-brand py-2">
+      <div className="fixed bottom-0 left-0 right-0 bg-brand py-1">
+        <div
+          ref={fieldRef}
+          className=""></div>
         <form
           onSubmit={sendMessage}
           className="row-span-1 flex flex-col px-3">
-          <div className="self-end w-full h-12  flex flex-row items-center justify-between rounded-3xl pl-0 shadow  pr-5 bg-white py-5 mt-2 overflow-hidden">
+          <div className="self-end w-full h-12  flex flex-row items-center justify-between rounded-3xl pl-0 shadow  pr-1 bg-white py-5  overflow-hidden">
             <textarea
               type="text"
               onChange={(e) => setFormValue(e.target.value)}
@@ -130,9 +124,8 @@ const Chat = () => {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
-                fill="currentColor"
                 aria-hidden="true"
-                className="rotate-90 h-8 w-12 text-sky-500 cursor-pointer hover:text-sky-600 outline-none ">
+                className="rotate-90 h-8 w-12 fill-cta cursor-pointer hover:text-sky-600 outline-none ">
                 <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
               </svg>
             </button>
