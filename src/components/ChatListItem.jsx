@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { logo } from "../assets";
+import { logo, profilePic } from "../assets";
 
 const ChatListItem = ({ data }) => {
   const { messages, id, participants } = data;
@@ -7,15 +7,17 @@ const ChatListItem = ({ data }) => {
   const userId = 1;
   const lastMsg = messages[messages.length - 1];
   console.log(lastMsg?.senderId);
-  const timeString = new Date(lastMsg.createdAt).toLocaleTimeString();
+  const timeString = new Date(lastMsg.createdAt)
+    .toLocaleTimeString()
+    .slice(0, -3);
   return (
     <Link
       className="w-full shadow rounded-xl  px-4 py-4 cursor-pointer bg-white flex gap-5"
       to={`${id}`}>
       <img
-        src={logo}
+        src={profilePic}
         alt="logo"
-        className={"w-9 h-9 rounded-full ring-2 ring-cta"}
+        className={"w-9 h-9 rounded-full ring-2 ring-cta object-cover"}
       />
       <div className="">
         <h1 className="font-bold">Janic Doe</h1>
