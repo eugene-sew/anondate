@@ -4,6 +4,7 @@ import ChatList from "./ChatList";
 import ChatListItem from "./ChatListItem";
 import ProfileCard from "./ProfileCard";
 import Connect from "./preloader/Connecting";
+import Creating from "./preloader/Creating";
 import Preloader from "./preloader/Preloader";
 
 export {
@@ -14,4 +15,5 @@ export {
   ChatList,
   ChatListItem,
   Chat,
+  Creating,
 };

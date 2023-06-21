@@ -17,7 +17,7 @@ const Preloader = ({ logo }) => {
     <>
       {isLoading && (
         <div
-          className={`flex items-center justify-center h-full w-full flex-col bg-opacity-100 z-20 absolute top-0 bottom-0 right-0 left-0 bg-white`}>
+          className={`flex items-center justify-center h-full w-full flex-col bg-opacity-100 z-50 absolute top-0 bottom-0 right-0 left-0 bg-white`}>
           <svg
             role="img"
             aria-label="Mouth and eyes come from 9:00 and rotate clockwise into position, right eye blinks, then all parts rotate and merge into 3:00"

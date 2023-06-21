@@ -2,12 +2,16 @@ import { useState } from "react";
 import { FiUnlock } from "react-icons/fi";
 import { FaCamera } from "react-icons/fa";
 import { logo } from "../assets";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { createUser } from "../util/util";
+import { Creating } from "../components";
 
 const Register = () => {
   const [step, setStep] = useState(1);
   const [PasswordMatchError, setPasswordMatchError] = useState(false);
   const [requiredError, setRequiredError] = useState(false);
+  const [IsLoading, setIsLoading] = useState(false);
+  const [uimage, setImage] = useState(null);
   const [userData, setUserData] = useState({
     username: "",
     email: "",
@@ -20,6 +24,7 @@ const Register = () => {
     profilePicture: null,
   });
 
+  const navigate = useNavigate();
   const handleNextStep = (e) => {
     let requiredFields = [];
     switch (step) {
@@ -55,11 +60,6 @@ const Register = () => {
     setStep(step + 1);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(userData);
-  };
-
   const handlePreviousStep = () => {
     setStep(step - 1);
   };
@@ -74,6 +74,7 @@ const Register = () => {
 
   const handleProfilePictureChange = (e) => {
     const file = e.target.files[0];
+    setImage(file);
     setUserData((prevData) => ({
       ...prevData,
       profilePicture: URL.createObjectURL(file),
@@ -92,6 +93,13 @@ const Register = () => {
     profilePicture,
   } = userData;
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    const { data } = await createUser(userData, uimage);
+    data !== null && navigate("/login");
+    setIsLoading(false);
+  };
   const renderStepContent = () => {
     switch (step) {
       case 1:
@@ -263,72 +271,76 @@ const Register = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen flex-col w-screen px-2 y-4 bg-gray-100 py-5">
-      <div className="bg-white p-3  md:mt-0 md:p-8 rounded shadow-lg overflow-hidden relative md:w-[450px] w-full h-full ">
-        <div className="h-5 bg-brand absolute w-full -bottom-4 right-0"></div>
+    <>
+      <div className="flex items-center justify-center h-screen flex-col w-screen px-2 y-4 bg-gray-100 py-5">
+        <div className="bg-white p-3  md:mt-0 md:p-8 rounded shadow-lg overflow-hidden relative md:w-[450px] w-full h-full ">
+          <div className="h-5 bg-brand absolute w-full -bottom-4 right-0"></div>
 
-        <div className="flex flex-row justify-between items-center mb-6">
-          <h1 className="appname text-4xl opacity-20">Yourba</h1>
-          <div className="flex items-center">
-            <h2 className="text-2xl text-brand inline">Register</h2>
-            <img
-              src={logo}
-              alt="app logo"
-              className="w-10 h-10 object-cover"
-            />
+          <div className="flex flex-row justify-between items-center mb-6">
+            <h1 className="appname text-4xl opacity-20">Yourba</h1>
+            <div className="flex items-center">
+              <h2 className="text-2xl text-brand inline">Register</h2>
+              <img
+                src={logo}
+                alt="app logo"
+                className="w-10 h-10 object-cover"
+              />
+            </div>
           </div>
+
+          <form className="w-full flex flex-col gap-5">
+            {requiredError && (
+              <label className="label p-0">
+                <span className="label-text-alt text-cta">
+                  ***All fields are required***
+                </span>
+              </label>
+            )}
+            {renderStepContent()}
+
+            <div className="flex justify-between">
+              {step > 1 && (
+                <button
+                  type="button"
+                  onClick={handlePreviousStep}
+                  className="btn btn-outline btn-sm">
+                  Previous
+                </button>
+              )}
+
+              {step < 2 ? (
+                <button
+                  type="button"
+                  onClick={handleNextStep}
+                  className="btn bg-cta font-semibold text-white outline-none border-none shadow">
+                  Next
+                  <FiUnlock />
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  onClick={handleSubmit}
+                  className="btn bg-cta font-semibold text-white outline-none border-none shadow">
+                  Register
+                  <FiUnlock />
+                </button>
+              )}
+            </div>
+          </form>
+
+          <p className="text-sm text-gray-600 mt-4 w-full text-center">
+            Already have an account?{" "}
+            <Link
+              to={"/login"}
+              className="text-cta opacity-70">
+              Login now!
+            </Link>
+          </p>
         </div>
-
-        <form className="w-full flex flex-col gap-5">
-          {requiredError && (
-            <label className="label p-0">
-              <span className="label-text-alt text-cta">
-                ***All fields are required***
-              </span>
-            </label>
-          )}
-          {renderStepContent()}
-
-          <div className="flex justify-between">
-            {step > 1 && (
-              <button
-                type="button"
-                onClick={handlePreviousStep}
-                className="btn btn-outline btn-sm">
-                Previous
-              </button>
-            )}
-
-            {step < 2 ? (
-              <button
-                type="button"
-                onClick={handleNextStep}
-                className="btn bg-cta font-semibold text-white outline-none border-none shadow">
-                Next
-                <FiUnlock />
-              </button>
-            ) : (
-              <button
-                type="submit"
-                onClick={handleSubmit}
-                className="btn bg-cta font-semibold text-white outline-none border-none shadow">
-                Register
-                <FiUnlock />
-              </button>
-            )}
-          </div>
-        </form>
-
-        <p className="text-sm text-gray-600 mt-4 w-full text-center">
-          Already have an account?{" "}
-          <Link
-            to={"/login"}
-            className="text-cta opacity-70">
-            Login now!
-          </Link>
-        </p>
       </div>
-    </div>
+
+      {IsLoading && <Creating message={" Creating your account ..."} />}
+    </>
   );
 };
 
