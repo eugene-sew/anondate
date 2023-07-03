@@ -3,7 +3,11 @@ import { RiMessage3Fill } from "react-icons/ri";
 import { FaUserSecret } from "react-icons/fa";
 import { Link, Outlet } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
+import { useAuth } from "../context/auth";
 const MainLayout = () => {
+  const { user, logout } = useAuth();
+  const baseUrl = import.meta.env.VITE_HOST;
+
   return (
     <div className="w-screen h-screen overflow-hidden">
       <nav className="flex justify-between px-5 items-center relative">
@@ -20,17 +24,17 @@ const MainLayout = () => {
               to={"/profile"}
               className="flex gap-5  items-center w-full ">
               <img
-                src={profilePic}
+                src={baseUrl + user?.profileImageUrl}
                 alt=""
                 className="w-10 h-10 object-cover rounded-full shadow ring-2 ring-cta"
               />
               <h1 className="font-semibold">My Profile</h1>
             </Link>
-            <Link
-              to={"logout"}
+            <button
+              onClick={logout}
               className="btn btn-outline border-cta text-white md:bg-cta">
               logout
-            </Link>
+            </button>
           </ul>
         </div>
         <Link

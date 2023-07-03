@@ -1,11 +1,10 @@
 import axios from "axios";
 import { IoMdAdd } from "react-icons/io";
 import swal from "sweetalert";
+import { useAuth } from "../context/auth";
+import CryptoJS from "crypto-js";
 
-const storeUserInLocal = (data) => {
-  window.localStorage.setItem("user", JSON.stringify(data));
-};
-
+// get user from local storage
 const getuserFromLocal = () => {
   return JSON.parse(window.localStorage.getItem("user")) || null;
 };
@@ -54,42 +53,68 @@ const createUser = async (userData, image) => {
   return { data, error };
 };
 
-const loginUser = async (userData) => {
-  const url = import.meta.env.VITE_LOGIN_URL;
-  const { username, password } = userData;
-
-  console.log("login data: ", userData);
-  let error = null;
+// get all profiles
+const fetchProfiles = async () => {
   let data = null;
-  const formData = new FormData();
-
-  formData.append("email", username);
-  formData.append("password", password);
-
+  let error = null;
+  const url = import.meta.env.VITE_PROFILES_URL;
+  const { id } = getuserFromLocal();
+  console.log(id, "user stored");
   try {
-    await axios
-      .post(url, formData)
-      .then((response) => {
-        console.log("this is data ", response.data);
-        if (response.data.success) {
-          const newUser = response.data.user;
-
-          console.log("user logged in", newUser);
-          data = newUser;
-          swal("Yourba", "Logged in ", "success");
-        } else {
-          const errorData = response.data.error;
-          error = errorData;
-
-          swal("Yourba", "error logging in \n \t " + errorData, "error");
-        }
-      })
-      .catch((err) => {
-        console.error("Failed to create user:", err);
-      });
+    await axios.get(url + "/" + id).then((response) => {
+      if (response.data.success) {
+        data = response.data.users;
+      }
+    });
   } catch (error) {
-    // Handle error (e.g., show an error message)
+    console.log(error);
+  }
+
+  return { data, error };
+};
+
+const sendConnect = async (senderId, receiverId) => {
+  let data = null;
+  let error = null;
+  const url = import.meta.env.VITE_HOST;
+  try {
+    const response = await axios.post(`${url}users/${receiverId}/like`, {
+      senderId: senderId,
+    });
+    data = response.data;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to send like");
   }
   return { data, error };
 };
-export { createUser, loginUser };
+
+const sendMessage = async (conversationId, senderId, content, receiverId) => {
+  const url = import.meta.env.VITE_ONE_URL + conversationId + "/messages";
+
+  try {
+    const response = await axios.post(url, {
+      senderId,
+      content,
+      receiverId,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error sending message:", error);
+    swal("Yourba", "Error sending message: \n" + error, "error");
+    throw new Error("An error occurred while sending the message");
+  }
+};
+
+const decryptMessage = (e, cid) => {
+  const decrypted = CryptoJS.AES.decrypt(e, cid).toString(CryptoJS.enc.Utf8);
+  return decrypted;
+};
+export {
+  createUser,
+  fetchProfiles,
+  getuserFromLocal,
+  sendConnect,
+  sendMessage,
+  decryptMessage,
+};

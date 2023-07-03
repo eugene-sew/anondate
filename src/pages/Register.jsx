@@ -5,6 +5,7 @@ import { logo } from "../assets";
 import { Link, useNavigate } from "react-router-dom";
 import { createUser } from "../util/util";
 import { Creating } from "../components";
+import swal from "sweetalert";
 
 const Register = () => {
   const [step, setStep] = useState(1);
@@ -66,6 +67,18 @@ const Register = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+
+    // Limit the dob input to 2003 or earlier
+    if (name === "dob") {
+      const selectedDate = new Date(value);
+      const currentDate = new Date();
+
+      if (selectedDate.getFullYear() > 2003 || selectedDate > currentDate) {
+        swal("Yourba Registration", "Too youung to be here", "error");
+        return;
+      }
+    }
+
     setUserData((prevData) => ({
       ...prevData,
       [name]: value,

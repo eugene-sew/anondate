@@ -16,6 +16,7 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";
+import { AuthProvider } from "./context/auth";
 
 function App() {
   // routes --done
@@ -57,7 +58,7 @@ function App() {
             element={<ChatList />}
           />
           <Route
-            path=":id"
+            path=":cid"
             element={<Chat />}
           />
         </Route>
@@ -71,10 +72,12 @@ function App() {
   );
   return (
     <div className="relative h-screen w-screen">
-      <div className="z-50">
-        <Preloader />
-      </div>
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <div className="z-50">
+          <Preloader />
+        </div>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </div>
   );
 }

@@ -2,16 +2,17 @@ import { FiUnlock } from "react-icons/fi";
 import { logo } from "../assets";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { loginUser } from "../util/util";
+
 import swal from "sweetalert";
 import { Creating } from "../components";
+import { useAuth } from "../context/auth";
 
 const LoginPage = () => {
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
   const [IsLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-
+  const { loginUser } = useAuth();
   const userData = {
     username,
     password,
