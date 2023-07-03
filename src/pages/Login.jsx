@@ -47,12 +47,12 @@ const LoginPage = () => {
           <form className="w-full flex flex-col gap-5">
             <div className="form-control w-full max-w-xs">
               <label className="label">
-                <span className="label-text">Username</span>
+                <span className="label-text">Email</span>
               </label>
 
               <input
                 type="text"
-                placeholder="@username"
+                placeholder="email address"
                 className="input w-full max-w-xs bg-gray-100"
                 onChange={(e) => setUsername(e.target.value)}
               />
