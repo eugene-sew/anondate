@@ -10,9 +10,7 @@ const ChatBubble = ({ message, isSentByCurrentUser, cid, url }) => {
   return (
     <div
       className={`chat ${
-        isSentByCurrentUser
-          ? "chat-end place-items-end"
-          : "chat-start place-items-start"
+        isSentByCurrentUser ? "chat-end" : "chat-start"
       } w-fit`}>
       {!isSentByCurrentUser && (
         <div className="chat-image avatar">
