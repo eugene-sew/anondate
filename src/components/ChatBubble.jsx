@@ -13,7 +13,7 @@ const ChatBubble = ({ message, isSentByCurrentUser, cid, url }) => {
         isSentByCurrentUser
           ? "chat-end place-items-end"
           : "chat-start place-items-start"
-      } w-full`}>
+      } w-fit`}>
       {!isSentByCurrentUser && (
         <div className="chat-image avatar">
           <div className="w-10 rounded-full">

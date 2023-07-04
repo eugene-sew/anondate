@@ -39,3 +39,7 @@
   width: 100px;
   height: 100px;
 }
+
+.message {
+  @apply w-fit h-fit px-3 py-2 rounded-3xl relative;
+}
