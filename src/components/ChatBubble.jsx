@@ -9,7 +9,7 @@ const ChatBubble = ({ message, isSentByCurrentUser, cid, url }) => {
   const baseUrl = import.meta.env.VITE_HOST;
   return (
     <div
-      className={`flex w-full relative ${
+      className={`flex w-full bg-red-600 relative ${
         isSentByCurrentUser
           ? "chat-end justify-end"
           : "chat-start justify-start"
