@@ -15,7 +15,11 @@ const MainLayout = () => {
           <label
             tabIndex={0}
             className="">
-            <FaUserSecret className="h-7 w-10 hover:text-cta" />
+            <img
+              src={baseUrl + user.profileImageUrl}
+              alt="user profile img"
+              className="w-8 h-8 ring-2 ring-cta rounded-full object-cover"
+            />
           </label>
           <ul
             tabIndex={0}
