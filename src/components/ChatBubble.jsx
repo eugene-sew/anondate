@@ -9,7 +9,7 @@ const ChatBubble = ({ message, isSentByCurrentUser, cid, url }) => {
   const baseUrl = import.meta.env.VITE_HOST;
   return (
     <div
-      className={`chat w-fit ${
+      className={`grid w-full ${
         isSentByCurrentUser ? "chat-end" : "chat-start"
       }`}>
       {!isSentByCurrentUser && (
