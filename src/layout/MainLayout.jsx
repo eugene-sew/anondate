@@ -1,4 +1,4 @@
-import { logo, profilePic } from "../assets";
+import { logo, message, profilePic } from "../assets";
 import { RiMessage3Fill } from "react-icons/ri";
 import { FaUserSecret } from "react-icons/fa";
 import { Link, Outlet } from "react-router-dom";
@@ -54,7 +54,11 @@ const MainLayout = () => {
         <Link
           className=""
           to={"/connects"}>
-          <RiMessage3Fill className="h-7 w-10 hover:text-cta" />
+          <img
+            src={message}
+            alt="message icon"
+            className="w-8 h-8  object-cover"
+          />
         </Link>
       </nav>
       <div className="sm:px-4 mt-3 bg-gray-100 h-screen overflow-hidden overflow-y-scroll ">
