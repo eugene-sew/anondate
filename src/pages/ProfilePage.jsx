@@ -102,7 +102,7 @@ const ProfilePage = () => {
           <img
             src={baseUrl + profileImageUrl}
             alt="profile-pic"
-            className="w-20 h-20 rounded-full ring-2 object-cover ring-brand"
+            className=" rounded-full ring-2 object-cover ring-brand profile-pic"
           />
           <h1 className="font-semibold text-gray-800 tracking-wide">{name}</h1>
         </div>
