@@ -8,16 +8,17 @@ import {
 } from "react-icons/fa";
 import { ProfileCard } from "../components";
 import { logo, profilePic } from "../assets";
+import { getuserFromLocal } from "../util/util";
 
 const ProfilePage = () => {
   const [username, setUsername] = useState("JohnDoe");
-  const [email, setEmail] = useState("johndoe@gmail.com");
-  const [dob, setDob] = useState("21st May , 2002");
-  const [gender, setGender] = useState("Male");
+  const [emaill, setEmail] = useState("johndoe@gmail.com");
+  const [dateob, setDob] = useState("21st May , 2002");
+
   const [profilePicture, setprofilePicture] = useState(null);
   const [password, setPassword] = useState("");
   const [avatar, setAvatar] = useState("");
-  const [bio, setBio] = useState(
+  const [bioo, setBio] = useState(
     "Fullstack developer with the stacks, looking for a peng tin"
   );
   const pref = [
@@ -28,7 +29,8 @@ const ProfilePage = () => {
     "Preference 5",
   ];
   const [preferences, setPreferences] = useState(pref);
-
+  const baseUrl = import.meta.env.VITE_HOST;
+  const { name, profileImageUrl, dob, email, gender, bio } = getuserFromLocal();
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
   };
@@ -67,19 +69,42 @@ const ProfilePage = () => {
     setPreferences([]);
   };
 
+  const dateTimeString = dob || new Date();
+  const date = new Date(dateTimeString);
+  const day = date.getDate();
+  const month = date.toLocaleString("default", { month: "long" });
+  const year = date.getFullYear();
+
+  // Function to get the ordinal suffix for the day
+  const getOrdinalSuffix = (day) => {
+    if (day > 3 && day < 21) {
+      return "th";
+    }
+    switch (day % 10) {
+      case 1:
+        return "st";
+      case 2:
+        return "nd";
+      case 3:
+        return "rd";
+      default:
+        return "th";
+    }
+  };
+
+  const formattedDate = `${day}${getOrdinalSuffix(day)} ${month}, ${year}`;
+
   return (
     <div className="flex flex-col items-center bg-gray-200 h-fit px-4 py-4 gap-3">
       <h1 className="w-full font-bold text-xl">My Profile</h1>
       <div className="bg-white h-fit  w-full flex justify-center relative py-10 rounded-3xl">
         <div className="flex flex-col gap-3 items-center">
           <img
-            src={profilePic}
+            src={baseUrl + profileImageUrl}
             alt="profile-pic"
             className="w-20 h-20 rounded-full ring-2 object-cover ring-brand"
           />
-          <h1 className="font-semibold text-gray-800 tracking-wide">
-            {username}
-          </h1>
+          <h1 className="font-semibold text-gray-800 tracking-wide">{name}</h1>
         </div>
         <div className="absolute right-2 top-2">
           <button className="bg-cta bg-opacity-20 p-2 rounded-full hover:bg-opacity-30">
@@ -107,7 +132,7 @@ const ProfilePage = () => {
             <FaCalendar className="w-5 h-5 text-gray-300" />
           </span>
         </div>
-        <span>{dob}</span>
+        <span>{formattedDate}</span>
       </div>
 
       {/* mail */}

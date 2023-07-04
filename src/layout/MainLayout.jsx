@@ -29,8 +29,8 @@ const MainLayout = () => {
               className="flex gap-5  items-center w-full ">
               <img
                 src={baseUrl + user?.profileImageUrl}
-                alt=""
-                className="w-10 h-10 object-cover rounded-full shadow ring-2 ring-cta"
+                alt="person image"
+                className="w-8 h-8 object-cover rounded-full shadow ring-2 ring-cta"
               />
               <h1 className="font-semibold">My Profile</h1>
             </Link>
