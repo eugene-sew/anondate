@@ -71,7 +71,7 @@ function App() {
     )
   );
   return (
-    <div className="relative h-screen w-screen">
+    <div className="relative h-screen w-screen md:hidden">
       <AuthProvider>
         <div className="z-50">
           <Preloader />

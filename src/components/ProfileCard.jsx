@@ -19,14 +19,14 @@ const ProfileCard = ({ user, onConnect, onSkip, connecting }) => {
   console.log(baseUrl + profileImageUrl);
   return (
     <>
-      <div className="card w-full shadow-xl h-[550px] sm:h-full my-6  relative overflow-hidden transition duration-200 ease-in-out cursor-pointer select-none bg-white">
+      <div className="card w-[400px] shadow-xl h-[550px] sm:h-full my-6  relative overflow-hidden transition duration-200 ease-in-out cursor-pointer select-none bg-white">
         <Preloader />
 
         <figure className="carousel">
           <img
             src={baseUrl + profileImageUrl}
             alt="person "
-            className="carousel-item "
+            className="carousel-item w-full h-[400px] object-cover"
           />
         </figure>
         <div className="card-body">
