@@ -8,7 +8,10 @@ const ChatBubble = ({ message, isSentByCurrentUser, cid, url }) => {
     .slice(0, -3);
   const baseUrl = import.meta.env.VITE_HOST;
   return (
-    <div className={`chat ${isSentByCurrentUser ? "chat-end" : "chat-start"}`}>
+    <div
+      className={`chat w-fit ${
+        isSentByCurrentUser ? "chat-end" : "chat-start"
+      }`}>
       {!isSentByCurrentUser && (
         <div className="chat-image avatar">
           <div className="w-10 rounded-full">
