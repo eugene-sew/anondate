@@ -301,7 +301,7 @@ const Register = () => {
             </div>
           </div>
 
-          <form className="w-full flex flex-col gap-5">
+          <form className="w-full flex flex-col gap-5 h-[600px]">
             {requiredError && (
               <label className="label p-0">
                 <span className="label-text-alt text-cta">

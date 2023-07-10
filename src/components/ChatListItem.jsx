@@ -16,7 +16,7 @@ const ChatListItem = ({ data }) => {
     new Date(lastMsg.createdAt).toLocaleTimeString().slice(0, -3);
   return (
     <Link
-      className="w-full shadow rounded-xl  px-4 py-4 cursor-pointer bg-white flex gap-5"
+      className="w-full shadow rounded-xl  px-4 py-4 cursor-pointer bg-white flex gap-5 items-center"
       to={`${data.id}`}>
       <img
         src={baseUrl + otherPerson?.profileImageUrl}

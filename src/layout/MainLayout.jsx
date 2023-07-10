@@ -1,4 +1,4 @@
-import { logo, profilePic } from "../assets";
+import { logo, message, profilePic } from "../assets";
 import { RiMessage3Fill } from "react-icons/ri";
 import { FaUserSecret } from "react-icons/fa";
 import { Link, Outlet } from "react-router-dom";
@@ -15,7 +15,11 @@ const MainLayout = () => {
           <label
             tabIndex={0}
             className="">
-            <FaUserSecret className="h-7 w-10 hover:text-cta" />
+            <img
+              src={baseUrl + user.profileImageUrl}
+              alt="user profile img"
+              className="w-8 h-8 ring-2 ring-cta rounded-full object-cover"
+            />
           </label>
           <ul
             tabIndex={0}
@@ -25,8 +29,8 @@ const MainLayout = () => {
               className="flex gap-5  items-center w-full ">
               <img
                 src={baseUrl + user?.profileImageUrl}
-                alt=""
-                className="w-10 h-10 object-cover rounded-full shadow ring-2 ring-cta"
+                alt="person image"
+                className="w-8 h-8 object-cover rounded-full shadow ring-2 ring-cta"
               />
               <h1 className="font-semibold">My Profile</h1>
             </Link>
@@ -50,7 +54,11 @@ const MainLayout = () => {
         <Link
           className=""
           to={"/connects"}>
-          <RiMessage3Fill className="h-7 w-10 hover:text-cta" />
+          <img
+            src={message}
+            alt="message icon"
+            className="w-8 h-8  object-cover"
+          />
         </Link>
       </nav>
       <div className="sm:px-4 mt-3 bg-gray-100 h-screen overflow-hidden overflow-y-scroll ">

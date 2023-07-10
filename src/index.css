@@ -34,3 +34,20 @@
 .msg_pre::after {
   content: " ~ you";
 }
+
+.profile-pic {
+  width: 100px;
+  height: 100px;
+}
+
+.message {
+  @apply w-fit h-fit px-3 py-2 rounded-3xl relative;
+}
+
+.recieved {
+  @apply justify-self-start bg-sky-200;
+}
+
+.sent {
+  @apply justify-self-end bg-gray-200;
+}

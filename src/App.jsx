@@ -71,12 +71,22 @@ function App() {
     )
   );
   return (
-    <div className="relative h-screen w-screen">
+    <div className="relative h-screen w-screen ">
       <AuthProvider>
         <div className="z-50">
           <Preloader />
         </div>
-        <RouterProvider router={router} />
+        <div className="sm:hidden">
+          <RouterProvider router={router} />
+        </div>
+
+        <div className="hidden w-full h-full sm:flex flex-col items-center justify-center">
+          <h1>Love is meant to be found on the go...</h1>
+          <br />
+          <h2>
+            Connect with <span className="appname">yourba</span> on your phone😉
+          </h2>
+        </div>
       </AuthProvider>
     </div>
   );

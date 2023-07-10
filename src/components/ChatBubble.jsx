@@ -8,10 +8,15 @@ const ChatBubble = ({ message, isSentByCurrentUser, cid, url }) => {
     .slice(0, -3);
   const baseUrl = import.meta.env.VITE_HOST;
   return (
-    <div className={`chat ${isSentByCurrentUser ? "chat-end" : "chat-start"} `}>
+    <div
+      className={`flex w-full relative ${
+        isSentByCurrentUser
+          ? "chat-end justify-end"
+          : "chat-start justify-start"
+      }`}>
       {!isSentByCurrentUser && (
         <div className="chat-image avatar">
-          <div className="w-10 rounded-full">
+          <div className="w-6 h-6 rounded-full">
             <img src={baseUrl + url} />
           </div>
         </div>
@@ -19,7 +24,7 @@ const ChatBubble = ({ message, isSentByCurrentUser, cid, url }) => {
       <div className="chat-bubble bg-gray-200 text-sm text-gray-700">
         {decryptMessage(message.content, cid)}
       </div>
-      <div className="chat-footer opacity-50">
+      <div className="chat-footer opacity-50 absolute -bottom-4">
         <time className="text-xs opacity-50">{timeString}</time>
       </div>
     </div>

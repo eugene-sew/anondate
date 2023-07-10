@@ -24,7 +24,7 @@ const createUser = async (userData, image) => {
   formData.append("gender", gender);
   formData.append("location", location);
   formData.append("profileImage", image);
-
+  console.log(formData);
   try {
     await axios
       .post(url, formData)
