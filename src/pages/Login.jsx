@@ -26,7 +26,7 @@ const LoginPage = () => {
     }
     setIsLoading(true);
     const { data } = await loginUser(userData);
-    data !== null && navigate("/await");
+    data !== null && navigate("/meet");
     setIsLoading(false);
   };
   return (
