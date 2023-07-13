@@ -36,7 +36,7 @@ const MainLayout = () => {
             </Link>
             <button
               onClick={logout}
-              className="btn btn-outline border-cta text-white md:bg-cta">
+              className="btn btn-outline border-red-600 text-red-600 md:bg-cta">
               logout
             </button>
           </ul>
