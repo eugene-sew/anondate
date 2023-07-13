@@ -110,7 +110,7 @@ const Register = () => {
     e.preventDefault();
     setIsLoading(true);
     const { data } = await createUser(userData, uimage);
-    data !== null && navigate("/login");
+    data !== null && navigate("/await");
     setIsLoading(false);
   };
   const renderStepContent = () => {
