@@ -17,6 +17,8 @@ import {
 } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";
 import { AuthProvider } from "./context/auth";
+import Await from "./pages/Await";
+import Verify from "./pages/Verify";
 
 function App() {
   // routes --done
@@ -50,6 +52,7 @@ function App() {
             element={<PeoplePage />}
           />
         </Route>
+
         <Route
           path="connects"
           element={<ChatPage />}>
@@ -66,6 +69,15 @@ function App() {
         <Route
           path="profile"
           element={<ProfilePage />}
+        />
+        <Route
+          path="await"
+          element={<Await />}
+        />
+
+        <Route
+          path="verify-mail/:id"
+          element={<Verify />}
         />
       </Route>
     )

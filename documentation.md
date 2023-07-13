@@ -1,5 +1,3 @@
-I apologize for the confusion. Let's update the documentation accordingly:
-
 # Yourba App Documentation
 
 ## Introduction
