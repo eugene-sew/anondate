@@ -24,7 +24,7 @@ const ProfileCard = ({ user, onConnect, onSkip, connecting }) => {
 
         <figure className="carousel">
           <img
-            src={baseUrl + profileImageUrl}
+            src={baseUrl + user?.profileImageUrl}
             alt="person "
             className="carousel-item w-full h-[400px] object-cover"
           />
